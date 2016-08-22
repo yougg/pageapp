@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>数字转换</title>
+		<meta charset="UTF-8">
+		<script src="resources/js/jquery.min.js"></script>
+		<script src="resources/js/convert-number.js"></script>
+		<link rel="stylesheet" href="resources/css/common.css">
+	</head>
+	<body>
+		<header>
+			<div class="intro">
+				<h1>数字转换</h1>
+				<h2>转换数字为多种可识别的字符形式</h2>
+				<p>
+					某些网站/论坛/留言板会主动屏蔽用户填写的内容中的联系方式号码，<br>
+					有时候没有被屏蔽但是又不想留下痕迹被搜索引擎抓取到留下的联系方式，<br>
+					使用本工具每次生成随机的数字替换内容可有效解决上面两个问题。
+				</p>
+				<p>
+					举个栗子，点点点点点击这一串数字 <a href="javascript:" id="sample">0123456789</a> 看看转换结果.
+				</p>
+			</div>
+			<table id="brand">
+				<tr><td><input type="checkbox" checked="checked"></td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+				<tr><td><input type="checkbox" checked="checked"></td><td>o</td><td>⒈</td><td>⒉</td><td>⒊</td><td>⒋</td><td>⒌</td><td>⒍</td><td>⒎</td><td>⒏</td><td>⒐</td></tr>
+				<tr><td><input type="checkbox"></td><td>O</td><td>Ⅰ</td><td>Ⅱ</td><td>Ⅲ</td><td>Ⅳ</td><td>Ⅴ</td><td>Ⅵ</td><td>Ⅶ</td><td>Ⅷ</td><td>Ⅸ</td></tr>
+				<tr><td><input type="checkbox" checked="checked"></td><td>〇</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td><td>七</td><td>八</td><td>九</td></tr>
+				<tr><td><input type="checkbox" checked="checked"></td><td>◎</td><td>①</td><td>②</td><td>③</td><td>④</td><td>⑤</td><td>⑥</td><td>⑦</td><td>⑧</td><td>⑨</td></tr>
+				<tr><td><input type="checkbox" checked="checked"></td><td>●</td><td>❶</td><td>❷</td><td>❸</td><td>❹</td><td>❺</td><td>❻</td><td>❼</td><td>❽</td><td>❾</td></tr>
+				<tr><td><input type="checkbox" checked="checked"></td><td>Ο</td><td>㈠</td><td>㈡</td><td>㈢</td><td>㈣</td><td>㈤</td><td>㈥</td><td>㈦</td><td>㈧</td><td>㈨</td></tr>
+				<tr><td><input type="checkbox" checked="checked"></td><td>○</td><td>⑴</td><td>⑵</td><td>⑶</td><td>⑷</td><td>⑸</td><td>⑹</td><td>⑺</td><td>⑻</td><td>⑼</td></tr>
+				<tr><td><input type="checkbox" checked="checked"></td><td>零</td><td>壹</td><td>贰</td><td>叁</td><td>肆</td><td>伍</td><td>陆</td><td>柒</td><td>捌</td><td>玖</td></tr>
+			</table>
+			<div class="clear"></div>
+		</header>
+		<table>
+			<tr>
+				<th style="width: 45%;">数　字</th>
+				<th style="width: 10%; font-size: 22px;">&#8594;</th>
+				<th style="width: 45%;">转换结果</th>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td style="width: 50%;">
+					<div id="input" contenteditable></div>
+				</td>
+				<td style="width: 50%;">
+					<div id="output"></div>
+				</td>
+			</tr>
+		</table>
+
+		<div id="disqus_thread" style="margin: 0 auto; max-width: 800px;"></div>
+		<script type="text/javascript">
+			/* * * CONFIGURATION VARIABLES * * */
+			var disqus_shortname = 'yougg';
+
+			/* * * DON'T EDIT BELOW THIS LINE * * */
+			(function() {
+				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			})();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+		<footer>
+			&copy; 2016 yougg - <a href="https://github.com/yougg/convert-number">到GitHub查看源码</a>
+			<br>
+			页面代码复制于<a href="https://mholt.github.io/json-to-go/">Matt Holt</a>.
+		</footer>
+	</body>
+</html>
