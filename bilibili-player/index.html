@@ -14,6 +14,8 @@
 		#iviewer {
 			height: 90%;
 		}
+
+
 	</style>
 	<script language="JavaScript">
 		function loadVideo(){
@@ -23,8 +25,23 @@
 				alert('请输入视频ID');
 				return;
 			}
-			var player = document.getElementById('bplayer');
-			player.src = 'http://static.hdslb.com/miniloader.swf?aid='+aid
+			//var player = document.getElementById('bplayer');
+			//player.setAttribute('flashvars', "aid="+aid);
+			var playframe = document.getElementById('playframe');
+			//playframe.src = playframe.src;
+
+			var player = document.createElement('embed');
+			player.setAttribute('id', 'bplayer');
+			player.setAttribute('allowfullscreen', 'true');
+			player.setAttribute('type', "application/x-shockwave-flash");
+			player.setAttribute('src', "http://static.hdslb.com/miniloader.swf");
+			player.setAttribute('quality', 'high');
+			player.setAttribute('height', '95%');
+			player.setAttribute('width', '100%');
+			player.setAttribute('flashvars', 'aid='+aid);
+
+			playframe.contentDocument.body.innerHTML = '';
+			playframe.contentDocument.body.appendChild(player);
 		}
 	</script>
 </head>
@@ -35,7 +52,7 @@
 	<input type="button" value="加　载" onclick="loadVideo()">
 </div>
 <div id="iviewer">
-	<iframe id="bplayer" width="100%" height="100%" style="border:none;"></iframe>
+	<iframe id="playframe" width="100%" height="100%" style="border:none;"></iframe>
 </div>
 </body>
 </html>
