@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bilibili Player</title>
+	<meta charset="UTF-8">
+	<style>
+		html, body{
+			height: 95%;
+		}
+		#idiv {
+			height: 25px;
+			text-align: center;
+		}
+		#iviewer {
+			height: 90%;
+		}
+	</style>
+	<script language="JavaScript">
+		function loadVideo(){
+			var idValue = document.getElementById('AID').value;
+			aid = idValue.replace(/\s+|[a-zA-Z]/g,'');
+			if (aid == '') {
+				alert('请输入视频ID');
+				return;
+			}
+			var player = document.getElementById('bplayer');
+			player.src = 'http://static.hdslb.com/miniloader.swf?aid='+aid
+		}
+	</script>
+</head>
+<body>
+<div id="idiv">
+	<label>Bilibili视频ID:</label>
+	<input id="AID" type="number" placeholder="输入ID..." onkeydown="if (event.keyCode == 13){loadVideo();}">
+	<input type="button" value="加　载" onclick="loadVideo()">
+</div>
+<div id="iviewer">
+	<iframe id="bplayer" width="100%" height="100%" style="border:none;"></iframe>
+</div>
+</body>
+</html>
