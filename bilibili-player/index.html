@@ -16,6 +16,9 @@
 		}
 
 
+
+
+
 	</style>
 	<script language="JavaScript">
 		function loadVideo(){
@@ -27,8 +30,6 @@
 			}
 			//var player = document.getElementById('bplayer');
 			//player.setAttribute('flashvars', "aid="+aid);
-			var playframe = document.getElementById('playframe');
-			//playframe.src = playframe.src;
 
 			var player = document.createElement('embed');
 			player.setAttribute('id', 'bplayer');
@@ -40,8 +41,18 @@
 			player.setAttribute('width', '100%');
 			player.setAttribute('flashvars', 'aid='+aid);
 
-			playframe.contentDocument.body.innerHTML = '';
-			playframe.contentDocument.body.appendChild(player);
+			var playframe = document.getElementById('playframe');
+			//playframe.src = playframe.src;
+			if (playframe.contentDocument){
+			 	// FF Chrome
+  				doc = playframe.contentDocument;
+			}
+			else if (playframe.contentWindow) {
+				// IE
+				doc = playframe.contentWindow.document;
+  			}
+			doc.body.innerHTML = '';
+			doc.body.appendChild(player);
 		}
 	</script>
 </head>
