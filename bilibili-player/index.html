@@ -14,47 +14,8 @@
 		#iviewer {
 			height: 90%;
 		}
-
-
-
-
-
 	</style>
-	<script language="JavaScript">
-		function loadVideo(){
-			var idValue = document.getElementById('AID').value;
-			aid = idValue.replace(/\s+|[a-zA-Z]/g,'');
-			if (aid == '') {
-				alert('请输入视频ID');
-				return;
-			}
-			//var player = document.getElementById('bplayer');
-			//player.setAttribute('flashvars', "aid="+aid);
-
-			var player = document.createElement('embed');
-			player.setAttribute('id', 'bplayer');
-			player.setAttribute('allowfullscreen', 'true');
-			player.setAttribute('type', "application/x-shockwave-flash");
-			player.setAttribute('src', "http://static.hdslb.com/miniloader.swf");
-			player.setAttribute('quality', 'high');
-			player.setAttribute('height', '95%');
-			player.setAttribute('width', '100%');
-			player.setAttribute('flashvars', 'aid='+aid);
-
-			var playframe = document.getElementById('playframe');
-			//playframe.src = playframe.src;
-			if (playframe.contentDocument){
-			 	// FF Chrome
-  				doc = playframe.contentDocument;
-			}
-			else if (playframe.contentWindow) {
-				// IE
-				doc = playframe.contentWindow.document;
-  			}
-			doc.body.innerHTML = '';
-			doc.body.appendChild(player);
-		}
-	</script>
+	<script src="../resources/js/bilibili-player.js"></script>
 </head>
 <body>
 <div id="idiv">
@@ -63,7 +24,7 @@
 	<input type="button" value="加　载" onclick="loadVideo()">
 </div>
 <div id="iviewer">
-	<iframe id="playframe" width="100%" height="100%" style="border:none;"></iframe>
+	<iframe id="playframe" width="100%" height="100%" style="border:none;" onload="initLoad()"></iframe>
 </div>
 </body>
 </html>
