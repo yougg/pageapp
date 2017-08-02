@@ -6,6 +6,14 @@
 <meta name="description" content="json,格式化,语法检查,高亮">
 <meta name="keywords" content="json,格式化,语法检查,高亮">
 <script type="text/javascript">
+var lang = navigator.language || navigator.userLanguage;
+var lineerr = ("zh-CN" == lang) ? "在第{0}行发生解析错误 " : "Parse error at line {0}";
+var losterr = ("zh-CN" == lang) ? "<br/>此处缺少{0}字符, 实际上确是一个 {1}" : "<br/>Expect {0}, But get {1}";
+var termerr = ("zh-CN" == lang) ? "解析意外终止." : "Unexpected terminated when parsing.";
+var expterr = ("zh-CN" == lang) ? ": 本应该是 " : ": Expect ";
+var tailerr = ("zh-CN" == lang) ? "结尾输入" : "Tail input";
+var parserr = ("zh-CN" == lang) ? "解析错误" : "Parse error";
+var worderr = ("zh-CN" == lang) ? "词汇错误发生在第{0}行. 不能识别的字符.<br/>{1}" : "Word error at line {0}. Unrecognized characters.<br/>{1}";
 var jsonlint = function() {
     var a = !0,
     b = !1,
@@ -322,7 +330,7 @@ var jsonlint = function() {
                             for (x in g[s]) this.terminals_[x] && x > 2 && A.push(this.terminals_[x]);
                             var B = "";
                             selectTextareaLine($id("RawJson"), i);
-                            this.lexer.showPosition ? B = "在第" + (i + 1) + "行发生解析错误 " + ":<br/>" + this.lexer.showPosition() + "<br/>此处缺少" + A.join(", ") + "字符, 实际上确是一个 " + this.terminals_[q] : B = "在第" + (i + 1) + "行发生解析错误 " + ": 本应该是 " + (q == 1 ? "结尾输入": "'" + (this.terminals_[q] || q) + "'"), this.parseError(B, {
+                            this.lexer.showPosition ? B = lineerr.format((i + 1)) + ":<br/>" + this.lexer.showPosition() + losterr.format(A.join(", "), this.terminals_[q]) : B = lineerr.format((i + 1)) + expterr + (q == 1 ? tailerr: "'" + (this.terminals_[q] || q) + "'"), this.parseError(B, {
                                 text: this.lexer.match,
                                 token: this.terminals_[q] || q,
                                 line: this.lexer.yylineno,
@@ -331,17 +339,17 @@ var jsonlint = function() {
                             })
                         }
                         if (k == 3) {
-                            if (q == m) throw new Error(B || "解析意外终止.");
+                            if (q == m) throw new Error(B || termerr);
                             j = this.lexer.yyleng, h = this.lexer.yytext, i = this.lexer.yylineno, n = this.lexer.yylloc, q = p();
                         }
                         for (;;) {
                             if (l.toString() in g[s]) break;
-                            if (s == 0) throw new Error(B || "解析意外终止.");
+                            if (s == 0) throw new Error(B || termerr);
                             o(1), s = d[d.length - 1]
                         }
                         r = q, q = l, s = d[d.length - 1], t = g[s] && g[s][l], k = 3;
                     }
-                    if (t[0] instanceof Array && t.length > 1) throw new Error("解析错误: multiple actions possible at state: " + s + ", token: " + q);
+                    if (t[0] instanceof Array && t.length > 1) throw new Error(parserr + ": multiple actions possible at state: " + s + ", token: " + q);
                     switch (t[0]) {
                     case 1:
                         d.push(q), e.push(this.lexer.yytext), f.push(this.lexer.yylloc), d.push(t[1]), q = null, r ? (q = r, r = null) : (j = this.lexer.yyleng, h = this.lexer.yytext, i = this.lexer.yylineno, n = this.lexer.yylloc, k > 0 && k--);
@@ -431,7 +439,7 @@ var jsonlint = function() {
                     }
                     if (this._input === "") return this.EOF;
                     selectTextareaLine($id("RawJson"), this.yylineno);
-                    this.parseError("词汇错误发生在第" + (this.yylineno + 1) + "行. 不能识别的字符.<br/>" + this.showPosition(), {
+                    this.parseError(worderr.format((this.yylineno + 1), this.showPosition()), {
                         text: "",
                         token: null,
                         line: this.yylineno
@@ -574,7 +582,7 @@ function Process() {
             json = "\"\"";
         }
         var lintJson = jsonlint.parse(json.trim());
-        json = JSON.stringify(lintJson);
+        //json = JSON.stringify(lintJson);
         var obj = eval("[" + json + "]");
         var html = ProcessObject(obj[0], 0, false, false, false);
         $id("Canvas").innerHTML = "<PRE class='CodeContainer'>" + html + "</PRE>";
@@ -805,6 +813,7 @@ function Copy() {
 }
 
 window.onload = function() {
+    resetUILang();
     refreshlines();
     $id("RawJson").onscroll = function () {
         $id("divlines").style.top = -($id("RawJson").scrollTop) + "px";
@@ -813,6 +822,38 @@ window.onload = function() {
     $id("RawJson").onkeyup = function () {
         refreshlines();
         return true;
+    }
+    if (!String.prototype.format) {
+        String.prototype.format = function() {
+            var args = arguments;
+            return this.replace(/{(\d+)}/g, function(match, number) {
+                return typeof args[number] != 'undefined' ? args[number] : match;
+            });
+        };
+    }
+}
+
+function resetUILang() {
+    var lang = navigator.language || navigator.userLanguage;
+    if (lang != "zh-CN") {
+        document.title = "JSON format syntax highlight";
+        $id('copyright').innerHTML = "Single web page for JSON format and syntax highlight &nbsp;©&nbsp;2017&nbsp;&nbsp;";
+        $id('HeaderSubTitle').innerHTML = "JSON Format, Syntax, Highlight";
+        $id('formatter').value = "Format";
+        $id('indent').innerHTML = "Indent";
+        $id('showquote').innerHTML = "Quote";
+        $id('selectall').value = "Select";
+        $id('copyall').value = "Copy";
+        $id('showctrl').innerHTML = "Controller";
+        $id('expandall').value = "Expand all";
+        $id('collapseall').value = "Collapse all";
+        $id('level2').value = "Lv2";
+        $id('level3').value = "Lv3";
+        $id('level4').value = "Lv4";
+        $id('level5').value = "Lv5";
+        $id('level6').value = "Lv6";
+        $id('level7').value = "Lv7";
+        $id('level8').value = "Lv8";
     }
 }
 
@@ -1071,8 +1112,8 @@ select#TabSize {
 <body>
 <div class="HeadersRow">
   <div id="HeaderTitle">
-  Web单页可离线 JSON格式化、语法检查、语法高亮工具 &nbsp;©&nbsp;2017&nbsp;&nbsp; 
-  <a style="text-decoration: none !important;" target="_blank" href="https://github.com/yougg/pageapp/tree/master/json">yougg</a>
+    <span id="copyright">Web单页可离线 JSON格式化、语法检查、语法高亮工具 &nbsp;©&nbsp;2017&nbsp;&nbsp;</span>
+    <a style="text-decoration: none !important;" target="_blank" href="https://github.com/yougg/pageapp/tree/master/json">yougg</a>
   </div>
   <h3 id="HeaderSubTitle">JSON格式化、语法检查、语法高亮</h3>
   <table style="width:98%;" cellspacing="0" cellpadding="0">
@@ -1089,9 +1130,9 @@ select#TabSize {
   </table>
 </div>
 <div id="ControlsRow">
-  <input type="Button" value="格式化" onclick="Process()">
+  <input id="formatter" type="Button" value="格式化" onclick="Process()">
   <span id="TabSizeHolder">
-    缩进量
+    <span id="indent">缩进量</span>
     <select id="TabSize" onchange="TabSizeChanged()">
       <option value="1">1</option>
       <option value="2">2</option>
@@ -1101,42 +1142,43 @@ select#TabSize {
       <option value="6">6</option>
     </select>
   </span>
-  <label for="QuoteKeys" class="control control--checkbox">引号
-      <input type="checkbox" id="QuoteKeys" onclick="QuoteKeysClicked()" checked="checked"/>
-      <div class="control__indicator"></div>
+  <label for="QuoteKeys" class="control control--checkbox">
+    <span id="showquote">引号</span>
+    <input type="checkbox" id="QuoteKeys" onclick="QuoteKeysClicked()" checked="checked"/>
+    <div class="control__indicator"></div>
   </label>
   &nbsp;
-  <input type="Button" value="全选" onclick="SelectAllClicked()">
-  &nbsp;
-  <input type="Button" value="复制" onclick="Copy()">
+  <input id="selectall" type="Button" value="全选" onclick="SelectAllClicked()">
+  <input id="copyall" type="Button" value="复制" onclick="Copy()">
+  &nbsp;&nbsp;
   <span id="CollapsibleViewHolder">
     <label for="CollapsibleView" class="control control--checkbox">
-      显示控制
+      <span id="showctrl">显示控制</span>
       <input type="checkbox" id="CollapsibleView" onclick="CollapsibleViewClicked()" checked="checked"/>
       <div class="control__indicator"></div>
     </label>
   </span>
   <span id="CollapsibleViewDetail">
-    <input type="Button" value="全部展开" onclick="ExpandAllClicked()">
-    <input type="Button" value="全部折叠" onclick="CollapseAllClicked()">
-    <input type="Button" value="2级" style="padding:1px;" onclick="CollapseLevel(3)">
-    <input type="Button" value="3级" style="padding:1px;" onclick="CollapseLevel(4)">
-    <input type="Button" value="4级" style="padding:1px;" onclick="CollapseLevel(5)">
-    <input type="Button" value="5级" style="padding:1px;" onclick="CollapseLevel(6)">
-    <input type="Button" value="6级" style="padding:1px;" onclick="CollapseLevel(7)">
-    <input type="Button" value="7级" style="padding:1px;" onclick="CollapseLevel(8)">
-    <input type="Button" value="8级" style="padding:1px;" onclick="CollapseLevel(9)">
+    <input id="expandall" type="Button" value="全部展开" onclick="ExpandAllClicked()">
+    <input id="collapseall" type="Button" value="全部折叠" onclick="CollapseAllClicked()">
+    <input id="level2" type="Button" value="2级" style="padding:1px;" onclick="CollapseLevel(3)">
+    <input id="level3" type="Button" value="3级" style="padding:1px;" onclick="CollapseLevel(4)">
+    <input id="level4" type="Button" value="4级" style="padding:1px;" onclick="CollapseLevel(5)">
+    <input id="level5" type="Button" value="5级" style="padding:1px;" onclick="CollapseLevel(6)">
+    <input id="level6" type="Button" value="6级" style="padding:1px;" onclick="CollapseLevel(7)">
+    <input id="level7" type="Button" value="7级" style="padding:1px;" onclick="CollapseLevel(8)">
+    <input id="level8" type="Button" value="8级" style="padding:1px;" onclick="CollapseLevel(9)">
   </span>
 </div>
 <table style="width:98%; padding-right: 6px;" cellspacing="0" cellpadding="0">
-    <tr>
-      <td style="width: 35px;">
-        &nbsp;
-      </td>
-      <td>
-        <div id="Canvas" class="Canvas"></div>
-      </td>
-    </tr>
-  </table>
+  <tr>
+    <td style="width: 35px;">
+      &nbsp;
+    </td>
+    <td>
+      <div id="Canvas" class="Canvas"></div>
+    </td>
+  </tr>
+</table>
 </body>
 </html>
