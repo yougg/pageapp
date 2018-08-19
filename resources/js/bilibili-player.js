@@ -36,7 +36,7 @@ function loadVideo() {
 	player.setAttribute('id', 'bplayer');
 	player.setAttribute('allowfullscreen', 'true');
 	player.setAttribute('type', "application/x-shockwave-flash");
-	player.setAttribute('src', "http://static.hdslb.com/miniloader.swf");
+	player.setAttribute('src', "https://static.hdslb.com/miniloader.swf");
 	player.setAttribute('quality', 'high');
 	player.setAttribute('height', '95%');
 	player.setAttribute('width', '100%');
