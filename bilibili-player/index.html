@@ -3,25 +3,79 @@
 <head>
 	<title>Bilibili Player</title>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../resources/css/theme.css">
+	<script src="../resources/js/theme.js"></script>
 	<style>
-		html, body{
+		html, body {
 			height: 95%;
+			margin: 0;
+			padding: 0;
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+			background-color: #ffffff;
+			color: #1e293b;
+			transition: background-color 0.2s, color 0.2s;
+		}
+		[data-theme="dark"] body {
+			background-color: #0b1120;
+			color: #f8fafc;
 		}
 		#idiv {
-			height: 25px;
+			padding: 12px;
 			text-align: center;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+		}
+		#AID {
+			padding: 6px 12px;
+			border: 1px solid #cbd5e1;
+			border-radius: 6px;
+			outline: none;
+			font-size: 14px;
+		}
+		[data-theme="dark"] #AID {
+			background-color: #1e293b;
+			color: #f8fafc;
+			border-color: #334155;
+		}
+		input[type="button"] {
+			padding: 6px 16px;
+			background-color: #315cb8;
+			color: #ffffff;
+			border: none;
+			border-radius: 6px;
+			cursor: pointer;
+			font-size: 14px;
+			font-weight: 500;
+		}
+		[data-theme="dark"] input[type="button"] {
+			background-color: #2563eb;
 		}
 		#iviewer {
-			height: 90%;
+			height: 88%;
+			width: 100%;
 		}
 	</style>
 	<script src="../resources/js/bilibili-player.js"></script>
 </head>
 <body>
+<div class="floating-theme-toggle" style="display: flex; gap: 8px;">
+	<button type="button" class="theme-toggle-btn" title="切换深色/浅色主题">
+		<span class="theme-toggle-icon theme-icon-light">
+			<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+		</span>
+		<span class="theme-toggle-icon theme-icon-dark">
+			<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+		</span>
+		<span class="theme-label-text">深色</span>
+	</button>
+	<a href="../" class="theme-toggle-btn" title="返回首页" style="text-decoration: none;">返回列表</a>
+</div>
 <div id="idiv">
-	<label>Bilibili视频ID:</label>
-	<input id="AID" type="number" placeholder="输入ID..." onkeydown="if (event.keyCode == 13){loadVideo();}">
-	<input type="button" value="加　载" onclick="loadVideo()">
+	<label for="AID">Bilibili 视频 ID:</label>
+	<input id="AID" type="number" placeholder="输入 AV/BV 号数字..." onkeydown="if (event.keyCode == 13){loadVideo();}">
+	<input type="button" value="加 载" onclick="loadVideo()">
 </div>
 <div id="iviewer">
 	<iframe id="playframe" width="100%" height="100%" style="border:none;" onload="initLoad()"></iframe>

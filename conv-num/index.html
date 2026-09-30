@@ -4,10 +4,24 @@
 		<title>数字转换</title>
 		<meta charset="UTF-8">
 		<script src="../resources/js/jquery.min.js"></script>
-		<script src="../resources/js/convert-number.js"></script>
+		<script src="../resources/js/conv-num.js"></script>
 		<link rel="stylesheet" href="../resources/css/common.css">
+		<link rel="stylesheet" href="../resources/css/theme.css">
+		<script src="../resources/js/theme.js"></script>
 	</head>
 	<body>
+		<div class="floating-theme-toggle" style="display: flex; gap: 8px;">
+			<button type="button" class="theme-toggle-btn" title="切换深色/浅色主题">
+				<span class="theme-toggle-icon theme-icon-light">
+					<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+				</span>
+				<span class="theme-toggle-icon theme-icon-dark">
+					<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+				</span>
+				<span class="theme-label-text">深色</span>
+			</button>
+			<a href="../" class="theme-toggle-btn" title="返回首页" style="text-decoration: none;">返回列表</a>
+		</div>
 		<header>
 			<div class="intro">
 				<h1>数字转换</h1>
@@ -67,7 +81,7 @@
 		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
 		<footer>
-			&copy; 2016 yougg - <a href="https://github.com/yougg/convert-number">到GitHub查看源码</a>
+			&copy; 2016 yougg - <a href="https://github.com/yougg/conv-num">到GitHub查看源码</a>
 			<br>
 			页面代码复制于<a href="https://mholt.github.io/json-to-go/">Matt Holt</a>.
 		</footer>

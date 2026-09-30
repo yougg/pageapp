@@ -2,7 +2,7 @@
 
 [B站视频播放器](https://yougg.github.io/pageapp/bilibili-player/)
 
-[数字转换](https://yougg.github.io/pageapp/convert-number/)
+[数字转换](https://yougg.github.io/pageapp/conv-num/)
 
 [JSON格式化](https://yougg.github.io/pageapp/json/)
 

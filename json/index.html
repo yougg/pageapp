@@ -1107,9 +1107,70 @@ select#TabSize {
    color: #FFFFFF;
    background-color: #4CAF50;
 }
+
+/* 暗黑模式适配 */
+[data-theme="dark"] body {
+  background-color: #0b1120;
+  color: #f8fafc;
+}
+[data-theme="dark"] #RawJson {
+  background-color: #151f32;
+  color: #f8fafc;
+  border: 1px solid #334155;
+}
+[data-theme="dark"] div.Canvas {
+  background-color: #1e293b;
+  color: #f8fafc;
+  border-color: #334155;
+}
+[data-theme="dark"] .ObjectBrace, [data-theme="dark"] .ArrayBrace {
+  color: #60a5fa;
+}
+[data-theme="dark"] .PropertyName {
+  color: #f472b6;
+}
+[data-theme="dark"] .String {
+  color: #34d399;
+}
+[data-theme="dark"] .Number {
+  color: #fb923c;
+}
+[data-theme="dark"] .Boolean {
+  color: #a78bfa;
+}
+[data-theme="dark"] .Comma {
+  color: #94a3b8;
+}
+[data-theme="dark"] .Null {
+  color: #f87171;
+}
+[data-theme="dark"] A.OtherToolsLink {
+  color: #94a3b8;
+}
+[data-theme="dark"] code {
+  background-color: #1e293b;
+  color: #f472b6;
+}
+[data-theme="dark"] .control__indicator {
+  background: #334155;
+}
 </style>
+<link rel="stylesheet" href="../resources/css/theme.css">
+<script src="../resources/js/theme.js"></script>
 </head>
 <body>
+<div class="floating-theme-toggle" style="display: flex; gap: 8px;">
+  <button type="button" class="theme-toggle-btn" title="切换深色/浅色主题">
+    <span class="theme-toggle-icon theme-icon-light">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+    </span>
+    <span class="theme-toggle-icon theme-icon-dark">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </span>
+    <span class="theme-label-text">深色</span>
+  </button>
+  <a href="../" class="theme-toggle-btn" title="返回首页" style="text-decoration: none;">返回列表</a>
+</div>
 <div class="HeadersRow">
   <div id="HeaderTitle">
     <span id="copyright">Web单页可离线 JSON格式化、语法检查、语法高亮工具 &nbsp;©&nbsp;2017&nbsp;&nbsp;</span>

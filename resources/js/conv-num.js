@@ -56,7 +56,7 @@ $(function()
 	Convert Number
 	by yougg
 
-	https://github.com/yougg/convert-number
+	https://github.com/yougg/conv-num
 
 	A simple utility to convert number to different number char.
 */
