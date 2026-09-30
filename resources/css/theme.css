@@ -1,0 +1,93 @@
+/**
+ * PageApp 全局主题样式组件 (theme.css)
+ */
+:root {
+  --app-bg: #f8fafc;
+  --app-card-bg: #ffffff;
+  --app-header-bg: #fafbfc;
+  --app-text: #1e293b;
+  --app-text-muted: #64748b;
+  --app-border: #e2e8f0;
+  --app-primary: #315cb8;
+  --app-primary-hover: #264a96;
+  --app-primary-light: #eaf1fb;
+}
+
+[data-theme="dark"] {
+  --app-bg: #0b1120;
+  --app-card-bg: #1e293b;
+  --app-header-bg: #151f32;
+  --app-text: #f8fafc;
+  --app-text-muted: #94a3b8;
+  --app-border: #334155;
+  --app-primary: #60a5fa;
+  --app-primary-hover: #3b82f6;
+  --app-primary-light: rgba(59, 130, 246, 0.16);
+}
+
+/* 全局主题切换按钮组件 */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--app-card-bg);
+  border: 1px solid var(--app-border);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--app-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--app-primary-light);
+  border-color: var(--app-primary);
+  color: var(--app-primary);
+}
+
+.theme-toggle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+/* 亮色模式显示月亮（提示可切暗），暗色模式显示太阳（提示可切亮） */
+[data-theme="dark"] .theme-icon-light {
+  display: inline-flex;
+}
+[data-theme="dark"] .theme-icon-dark {
+  display: none;
+}
+
+[data-theme="light"] .theme-icon-light,
+:root:not([data-theme="dark"]) .theme-icon-light {
+  display: none;
+}
+[data-theme="light"] .theme-icon-dark,
+:root:not([data-theme="dark"]) .theme-icon-dark {
+  display: inline-flex;
+}
+
+/* 浮动式主题按钮 (适用于没有顶部导航栏的页面，如 clock、bilibili 等) */
+.floating-theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0.85;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.floating-theme-toggle:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}

@@ -7,12 +7,46 @@
 */
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
 
+:root {
+	--page-bg: #ffffff;
+	--page-text: #1e293b;
+	--header-color: #000000;
+	--th-bg: #375EAB;
+	--th-text: #ffffff;
+	--input-bg: #ECF2F5;
+	--input-text: #000000;
+	--input-border: #AAAAAA;
+	--output-bg: #E0EBF5;
+	--output-text: #000000;
+	--footer-text: #888888;
+	--link-color: #315cb8;
+}
+
+[data-theme="dark"] {
+	--page-bg: #0b1120;
+	--page-text: #f8fafc;
+	--header-color: #ffffff;
+	--th-bg: #1e40af;
+	--th-text: #f8fafc;
+	--input-bg: #151f32;
+	--input-text: #f8fafc;
+	--input-border: #334155;
+	--output-bg: #1e293b;
+	--output-text: #60a5fa;
+	--footer-text: #94a3b8;
+	--link-color: #60a5fa;
+}
+
 body {
 	font: 16px/1.25em '幼圆', '微软雅黑', 'sans-serif';
+	background-color: var(--page-bg);
+	color: var(--page-text);
+	transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 header {
 	padding: 2%;
+	color: var(--header-color);
 }
 
 .intro {
@@ -24,6 +58,7 @@ h1 {
 	font-size: 34px;
 	font-weight: bold;
 	line-height: 1.5em;
+	color: var(--header-color);
 }
 
 h2 {
@@ -36,12 +71,21 @@ p {
 	line-height: 1.5em;
 }
 
+a {
+	color: var(--link-color);
+}
+
 #brand {
 	width: 50%;
 	max-width: 350px;
 	margin-top: 2%;
 	margin-left: 10%;
 	margin-right: 10%;
+	color: var(--page-text);
+}
+
+#brand td {
+	padding: 3px;
 }
 
 table {
@@ -51,10 +95,11 @@ table {
 
 th {
 	padding: 15px;
-	background: #375EAB;
+	background: var(--th-bg);
 	text-align: center;
-	color: #FFF;
+	color: var(--th-text);
 	font-size: 20px;
+	transition: background 0.2s;
 }
 
 #input,
@@ -76,19 +121,22 @@ th {
 	height: 25vh;
 	overflow: scroll;
 	tab-size: 4;
+	transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 #input {
-	background: #ECF2F5;
-	border-right: 2px solid #AAA;
+	background: var(--input-bg);
+	color: var(--input-text);
+	border-right: 2px solid var(--input-border);
 }
 
 #output {
-	background: #E0EBF5;
+	background: var(--output-bg);
+	color: var(--output-text);
 }
 
 footer {
-	color: #888;
+	color: var(--footer-text);
 	text-align: center;
 	padding: 75px 0 50px;
 	line-height: 2em;
@@ -97,7 +145,6 @@ footer {
 .clear {
 	clear: both;
 }
-
 
 @media (max-width: 1000px) {
 	header {

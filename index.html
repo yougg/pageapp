@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>静态页面应用集 (PageApp)</title>
+  <link rel="stylesheet" href="resources/css/theme.css">
+  <script src="resources/js/theme.js"></script>
+  <style>
+    :root {
+      --primary: #315cb8;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --header-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --icon-bg: #eaf1fb;
+      --icon-color: #315cb8;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.06), 0 2px 4px -1px rgba(0,0,0,0.04);
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --primary: #60a5fa;
+      --bg: #0b1120;
+      --card-bg: #1e293b;
+      --header-bg: #151f32;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --icon-bg: rgba(59, 130, 246, 0.16);
+      --icon-color: #60a5fa;
+      --shadow: 0 4px 8px -1px rgba(0,0,0,0.4);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    header {
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 30px 24px;
+      position: relative;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    .header-content {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .header-title-box h1 {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+    .header-title-box p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    main {
+      max-width: 960px;
+      width: 100%;
+      margin: 40px auto;
+      padding: 0 20px;
+      flex: 1;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .app-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: var(--shadow);
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .app-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.12);
+      border-color: var(--primary);
+    }
+    [data-theme="dark"] .app-card:hover {
+      box-shadow: 0 10px 20px -3px rgba(0,0,0,0.5);
+    }
+    .app-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--icon-bg);
+      color: var(--icon-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 16px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+    .app-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .app-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .badge-new {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: #10b981;
+      color: #fff;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 500;
+    }
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      background: var(--header-bg);
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    @media (max-width: 640px) {
+      .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="header-title-box">
+        <h1>PageApp 静态小工具集</h1>
+        <p>轻量、纯前端、即开即用的静态页面工具集合</p>
+      </div>
+      <div>
+        <button type="button" class="theme-toggle-btn" id="btn-theme-toggle" title="切换深色/浅色主题">
+          <span class="theme-toggle-icon theme-icon-light">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </span>
+          <span class="theme-toggle-icon theme-icon-dark">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </span>
+          <span class="theme-label-text">深色</span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="grid">
+      <a href="conv-zh/" class="app-card">
+        <span class="badge-new">NEW</span>
+        <div class="app-icon">繁</div>
+        <div class="app-title">简繁中文智能转换</div>
+        <div class="app-desc">纯前端离线上下文词组消歧，支持一对多歧义字高亮标注与点击自由切换。</div>
+      </a>
+      <a href="convert-number/" class="app-card">
+        <div class="app-icon">123</div>
+        <div class="app-title">数字转换</div>
+        <div class="app-desc">转换数字为大写汉字、罗马数字、带圈序号等多种字符形式。</div>
+      </a>
+      <a href="json/" class="app-card">
+        <div class="app-icon">{ }</div>
+        <div class="app-title">JSON 格式化</div>
+        <div class="app-desc">在线 JSON 数据格式化、着色校验与树形结构查看工具。</div>
+      </a>
+      <a href="bilibili-player/" class="app-card">
+        <div class="app-icon">▶</div>
+        <div class="app-title">B站视频播放器</div>
+        <div class="app-desc">嵌入式 Bilibili 视频播放与辅助工具。</div>
+      </a>
+      <a href="clock/" class="app-card">
+        <div class="app-icon">⏱</div>
+        <div class="app-title">Kindle 时钟</div>
+        <div class="app-desc">极简全屏大字时钟，适配电子墨水屏与桌面展示。</div>
+      </a>
+    </div>
+  </main>
+  <footer>
+    <p>Powered by GitHub Pages</p>
+  </footer>
+</body>
+</html>
