@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const chkHighlight = document.getElementById('chk-highlight');
   const sampleSelect = document.getElementById('sample-select');
   const btnCopy = document.getElementById('btn-copy');
-  const btnClear = document.getElementById('btn-clear');
+  const btnClear = document.getElementById('btn-clear') || document.getElementById('btnClear');
   const btnExport = document.getElementById('btn-export');
 
   // 统计面板
@@ -369,30 +369,34 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // 一键清空
-  btnClear.addEventListener('click', () => {
-    inputText.value = '';
-    manualOverrides.clear();
-    runConversion();
-    showToast('已清空内容');
-  });
+  if (btnClear) {
+    btnClear.addEventListener('click', () => {
+      inputText.value = '';
+      manualOverrides.clear();
+      runConversion();
+      showToast('已清空内容');
+    });
+  }
 
   // 导出文本文件
-  btnExport.addEventListener('click', () => {
-    const text = getOutputPlainText();
-    if (!text) {
-      showToast('暂无内容可导出');
-      return;
-    }
+  if (btnExport) {
+    btnExport.addEventListener('click', () => {
+      const text = getOutputPlainText();
+      if (!text) {
+        showToast('暂无内容可导出');
+        return;
+      }
 
-    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `convert_result_${currentDirection}_${Date.now()}.txt`;
-    a.click();
-    URL.revokeObjectURL(url);
-    showToast('已开始下载导出文件');
-  });
+      const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `convert_result_${currentDirection}_${Date.now()}.txt`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('已开始下载导出文件');
+    });
+  }
 
   // Toast 气泡提示
   function showToast(message) {
