@@ -419,7 +419,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2200);
   }
 
-  // 初始加载默认样例演示
-  inputText.value = '皇后在前后端吃牛肉面，理发发生头发问题，台风吹过写字台，干杯之后继续干活。';
+  // 初始状态渲染占位符
   runConversion();
 });
