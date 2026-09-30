@@ -4,8 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>静态页面应用集 (PageApp)</title>
+  <meta name="theme-color" content="#315cb8">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="resources/icons/icon-192.png">
   <link rel="stylesheet" href="resources/css/theme.css">
   <script src="resources/js/theme.js"></script>
+  <script src="resources/js/pwa.js"></script>
   <style>
     :root {
       --primary: #315cb8;
@@ -165,7 +169,15 @@
         <h1>PageApp 静态小工具集</h1>
         <p>轻量、纯前端、即开即用的静态页面工具集合</p>
       </div>
-      <div>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <button type="button" class="pwa-install-btn" id="btn-pwa-install" title="一键安装为本地桌面/手机应用" style="display: none;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>安装应用</span>
+        </button>
         <button type="button" class="theme-toggle-btn" id="btn-theme-toggle" title="切换深色/浅色主题">
           <span class="theme-toggle-icon theme-icon-light">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>

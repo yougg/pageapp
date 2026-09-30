@@ -1,0 +1,103 @@
+{
+  "name": "PageApp 实用工具集",
+  "short_name": "PageApp",
+  "description": "轻量、纯前端、即开即用的静态页面工具集合，包含简繁转换、数字转换、JSON格式化、Kindle时钟与B站播放器。",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0b1120",
+  "theme_color": "#315cb8",
+  "categories": [
+    "utilities",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "resources/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "resources/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "resources/icons/icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "resources/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "简繁中文转换",
+      "short_name": "简繁转换",
+      "description": "纯前端离线词组消歧简繁中文智能转换",
+      "url": "./conv-zh/",
+      "icons": [
+        {
+          "src": "resources/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "数字转换",
+      "short_name": "数字转换",
+      "description": "转换数字为大写汉字、罗马数字、带圈序号等多种形式",
+      "url": "./conv-num/",
+      "icons": [
+        {
+          "src": "resources/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "JSON 格式化",
+      "short_name": "JSON",
+      "description": "在线 JSON 数据格式化、着色校验与树形结构查看",
+      "url": "./json/",
+      "icons": [
+        {
+          "src": "resources/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Kindle 时钟",
+      "short_name": "时钟",
+      "description": "极简全屏大字时钟，适配电子墨水屏与桌面展示",
+      "url": "./clock/",
+      "icons": [
+        {
+          "src": "resources/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "B站视频播放器",
+      "short_name": "B站播放器",
+      "description": "嵌入式 Bilibili 视频播放与辅助工具",
+      "url": "./bilibili-player/",
+      "icons": [
+        {
+          "src": "resources/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

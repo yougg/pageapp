@@ -5,8 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>简繁中文智能转换 - 纯前端离线消歧工具</title>
   <meta name="description" content="基于确定性映射与上下文词组消歧的纯前端简繁转换工具，不依赖任何外部服务与AI，支持GitHub Pages零依赖离线部署。">
+  <meta name="theme-color" content="#315cb8">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="apple-touch-icon" href="../resources/icons/icon-192.png">
+  <link rel="stylesheet" href="../resources/css/theme.css">
   <link rel="stylesheet" href="style.css">
   <script src="../resources/js/theme.js"></script>
+  <script src="../resources/js/pwa.js"></script>
 </head>
 <body>
   <!-- 顶部导航 -->
@@ -19,6 +24,14 @@
       </div>
     </a>
     <div class="nav-actions">
+      <button type="button" class="pwa-install-btn" id="btn-pwa-install" title="一键安装为本地桌面/手机应用" style="display: none;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>安装应用</span>
+      </button>
       <button type="button" id="btn-theme-toggle" class="theme-toggle-btn" title="切换深色/浅色主题">
         <span class="theme-icon light-icon" title="切换至浅色模式">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

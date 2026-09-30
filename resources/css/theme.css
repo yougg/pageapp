@@ -91,3 +91,40 @@
   opacity: 1;
   transform: translateY(-2px);
 }
+
+/* 全局 PWA 安装按钮组件 */
+.pwa-install-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--app-card-bg);
+  border: 1px solid var(--app-border);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--app-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.pwa-install-btn:hover {
+  background: var(--app-primary-light);
+  border-color: var(--app-primary);
+  color: var(--app-primary);
+}
+
+.pwa-install-btn svg {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.pwa-install-btn[hidden],
+.pwa-install-btn.hidden {
+  display: none !important;
+}
+
